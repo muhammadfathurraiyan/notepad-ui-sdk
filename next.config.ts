@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -7,7 +8,12 @@ const nextConfig: NextConfig = {
   },
   cacheComponents: true,
   partialPrefetching: true,
+  // The dev indicator badge sits on top of the XP taskbar's Start button.
+  devIndicators: false,
   turbopack: {
+    // A lockfile in the home directory would otherwise make Turbopack pick
+    // that folder as its root.
+    root: path.resolve("."),
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],
